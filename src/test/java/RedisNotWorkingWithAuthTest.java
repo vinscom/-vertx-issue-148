@@ -20,7 +20,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @ExtendWith(VertxExtension.class)
 @Testcontainers
 @Timeout(value = 10, timeUnit = TimeUnit.MINUTES)
-public class RedisNotWorkingTest {
+public class RedisNotWorkingWithAuthTest {
 
   @Container
   private final GenericContainer REDIS_CONTAINER = new GenericContainer("redis:5")
@@ -30,7 +30,7 @@ public class RedisNotWorkingTest {
 
   private final RedisClient client;
 
-  public RedisNotWorkingTest() {
+  public RedisNotWorkingWithAuthTest() {
     REDIS_CONTAINER.getPortBindings().add("6379:6379");
     client = RedisClient.create(Vertx.vertx(), new JsonObject().put("auth", "foobared"));
   }
